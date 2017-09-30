@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/layout_root"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    android:padding="10dp"
+    android:background="@color/darkbg">
+
+
+    <EditText
+        android:id="@+id/editName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Name"
+        android:inputType="text"
+        android:textColorHint="?android:attr/textColorHighlightInverse"
+        android:maxLines="1"
+        android:textColor="@android:color/holo_red_dark" />
+
+    <EditText
+        android:id="@+id/editVal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Initial Value"
+        android:textColorHint="?android:attr/textColorHighlightInverse"
+        android:inputType="number"
+        android:textColor="@android:color/holo_red_dark" />
+
+    <EditText
+        android:id="@+id/editComment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Comment"
+        android:textColorHint="?android:attr/textColorHighlightInverse"
+        android:inputType="textMultiLine"
+        android:textColor="@android:color/holo_red_dark" />
+</LinearLayout>

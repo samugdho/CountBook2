@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">CountBook</string>
+    <string name="add_button">New</string>
+</resources>
