@@ -1,35 +1,56 @@
+/*
+ * Copyright (c) 2017. Sadman, CMPUT 301, University of Alberta - All Rights Reserved.
+ * You may use, distribute, or modify this code under terms and conditions of the
+ * Code of Students Behaviour at University of Alberta
+ */
+
 package com.example.sadman.countbook;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+/**
+ * Counter class to store information on counters;
+ * name, comment -> String;
+ * initVal, currentVal -> int;
+ * creationDate, updateDate -> Date;
+ * Most of these have getters and setters;
+ * And some specialized getters for Dates;
+ * All setters update updateDate
+ * uses SimpleDateFormat for date and time Formatting
+ * @see SimpleDateFormat
+ * creationDate,
+ */
 public class Counter{
     private String name;
     private String comment;
-    private Date date;
+    private Date creationDate;
+    private Date updateDate;
     private int initVal;
     private int currentVal;
 
-    public void setInitVal(int initVal) {
-        this.update();
-        this.initVal = initVal;
-    }
-
-    public Date getLast() {
-        return last;
-    }
-
-
-
-    private Date last;
-
+    /**
+     * Create a counter, set initial value, name, and optional comment
+     * @param name
+     * @param comment
+     * @param initVal
+     */
     public Counter(String name, String comment, int initVal) {
         this.name = name;
         this.comment = comment;
         this.initVal = initVal;
-        this.date = new Date();
-        this.last = new Date();
+        this.creationDate = new Date();
+        this.updateDate = new Date();
         this.currentVal = this.initVal;
+    }
+
+    public int getInitVal() {
+        return initVal;
+    }
+
+    public void setInitVal(int initVal) {
+        this.update();
+        this.initVal = initVal;
     }
 
     public String getName() {
@@ -58,24 +79,36 @@ public class Counter{
         this.update();
         this.currentVal = currentVal;
     }
-
-
-    public String getDateString() {
-        return new SimpleDateFormat("dd/MM/yy, h:mm a").format(this.date);
+    /**
+     * Specialized getter for creationDate
+     * @return formatted date String
+     * @see SimpleDateFormat
+     */
+    public String getCreationString() {
+        return new SimpleDateFormat("dd/MM/yy, h:mm a").format(this.creationDate);
     }
-    public String getLastString() {
-        return new SimpleDateFormat("dd/MM/yy, h:mm:ss a").format(this.last);
+
+    /**
+     * Specialized getter for updateDate
+     * @return formatted date String
+     * @see SimpleDateFormat
+     */
+    public String getUpdateString() {
+        return new SimpleDateFormat("dd/MM/yy, h:mm:ss a").format(this.updateDate);
     }
+    /**
+     * Updates the updateDate to NOW
+     */
     public void update(){
-        this.last = new Date();
-    }
-    public int getInitVal() {
-        return initVal;
+        this.updateDate = new Date();
     }
 
-
+    /**
+     * unused toString method
+     * @return some string
+     */
     @Override
     public String toString() {
-        return new SimpleDateFormat("dd/MM/yy, h:mm a").format(this.date)+"\n\t"+this.name+" | "+this.currentVal;
+        return new SimpleDateFormat("dd/MM/yy, h:mm a").format(this.creationDate)+"\n\t"+this.name+" | "+this.currentVal;
     }
 }

@@ -1,3 +1,9 @@
+/*
+ * Copyright (c) 2017. Sadman, CMPUT 301, University of Alberta - All Rights Reserved.
+ * You may use, distribute, or modify this code under terms and conditions of the
+ * Code of Students Behaviour at University of Alberta
+ */
+
 package com.example.sadman.countbook;
 
 import android.app.Activity;
@@ -13,7 +19,10 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-
+/**
+ * A custom adapter for the MainActivity
+ * @see MainActivity
+ */
 class CustomAdapter extends ArrayAdapter<Counter> {
     CustomAdapter(Context context,  ArrayList<Counter> counters) {
         super(context, R.layout.custom_list, counters);
@@ -22,11 +31,13 @@ class CustomAdapter extends ArrayAdapter<Counter> {
 
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
+        // Inflating from xml
         LayoutInflater inflater = LayoutInflater.from(getContext());
         final View custom = inflater.inflate(R.layout.custom_list, parent, false);
 
+        // Getting things
         String name = getItem(position).getName();
-        String date = getItem(position).getDateString();
+        String date = getItem(position).getCreationString();
         String number = getItem(position).getCurrentVal() + "";
 
         TextView t_name = (TextView) custom.findViewById(R.id.list_name);
@@ -38,10 +49,12 @@ class CustomAdapter extends ArrayAdapter<Counter> {
 
         LinearLayout main = (LinearLayout) custom.findViewById(R.id.layout_main);
 
+        // Setting things
         t_name.setText(name);
         t_date.setText(date);
         t_number.setText(number);
 
+        // Setting button actions
         b_plus.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
@@ -65,6 +78,14 @@ class CustomAdapter extends ArrayAdapter<Counter> {
 
 
     }
+
+    /**
+     * Updates the counter by 1 in either direction
+     * uses toastMe to announce range errors
+     * @param val {-1,1}
+     * @param position of clicked item in listView
+     * @param custom the view from the xml
+     */
     public void updateCounter(int val, int position, View custom){
         Counter c = getItem(position);
         int value = c.getCurrentVal() + val;
@@ -78,6 +99,12 @@ class CustomAdapter extends ArrayAdapter<Counter> {
             MainActivity.saveInFile(getContext());
         }
     }
+
+    /**
+     * starts the EditCounter activity
+     * Intent sends the position of the counter
+     * @param position
+     */
     public void editCounter(int position){
         Intent intent = new Intent(getContext(), EditCounter.class);
         intent.putExtra(MainActivity.COUNTER_POSITION, String.valueOf(position));

@@ -1,3 +1,9 @@
+/*
+ * Copyright (c) 2017. Sadman, CMPUT 301, University of Alberta - All Rights Reserved.
+ * You may use, distribute, or modify this code under terms and conditions of the
+ * Code of Students Behaviour at University of Alberta
+ */
+
 package com.example.sadman.countbook;
 
 import android.app.AlertDialog;
@@ -33,70 +39,129 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
-    private TextView amount;
+    private TextView amount_of_comments;
+    private ListView mainListView;
+    private AlertDialog.Builder newCounterBuilder;
+    private AlertDialog newCounterDialog;
+    private LayoutInflater newCounterLayoutInflater;
+    private View prompt_for_custom_view;
+
+    public static ArrayAdapter<Counter> counterAdapter;
     public static ArrayList<Counter> counters;
-    private ListView listView;
-    public static ArrayAdapter<Counter> adapter;
-    private AlertDialog.Builder builder;
-    private AlertDialog dialog;
-    private LayoutInflater li;
-    private View prompt;
+
     public static final String COUNTER_POSITION = "THIS.IS.COUNTER.POSITION";
     public static final String COUNTER_FILENAME = "counter_file.save";
 
 
-//    private void dialogInitValue(final String counterName){
-//        builder = new AlertDialog.Builder(MainActivity.this);
-//        builder.setTitle("New Counter");
-//        final EditText input = new EditText(MainActivity.this);
-//        input.setInputType(InputType.TYPE_CLASS_NUMBER);
-//        input.setRawInputType(Configuration.KEYBOARD_12KEY);
-//        builder.setView(input);
-//        builder.setPositiveButton("Next", new DialogInterface.OnClickListener(){
-//            @Override
-//            public void onClick(DialogInterface dialog, int which) {
-//                String answer = counterName + input.getText().toString();
-//                arrayList.add(answer);
-//                adapter.notifyDataSetChanged();
-//
-//            }
-//        });
-//        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener(){
-//            @Override
-//            public void onClick(DialogInterface dialog, int which) {
-//            }
-//        });
-//        builder.show();
-//    }
+    /**
+     * To builder: Please use API 25
+     */
 
+    /**
+     * Creates the main activity;
+     * Sets what happens when [NEW] is clicked
+     * @see Counter
+     * @param savedInstanceState
+     */
+
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        Button newButton = (Button) findViewById(R.id.new_button);
+        mainListView = (ListView) findViewById(R.id.main_list);
+        // Everything that happens when [NEW] is clicked
+        newButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                newCounterLayoutInflater = LayoutInflater.from(MainActivity.this);
+                prompt_for_custom_view = newCounterLayoutInflater.inflate(R.layout.alert_custom_new_init, null);
+
+                newCounterBuilder = new AlertDialog.Builder(new ContextThemeWrapper(MainActivity.this, R.style.AlertDialogCustom));
+                newCounterBuilder.setView(prompt_for_custom_view);
+
+                final EditText counterName = (EditText) prompt_for_custom_view.findViewById(R.id.editName);
+                // Set keyboard to numerical
+                final EditText counterVal = (EditText) prompt_for_custom_view.findViewById(R.id.editVal);
+                counterVal.setRawInputType(Configuration.KEYBOARD_12KEY);
+                final EditText counterComment = (EditText) prompt_for_custom_view.findViewById(R.id.editComment);
+
+                newCounterBuilder.setTitle("New Counter");
+                // I override this below
+                newCounterBuilder.setPositiveButton("OK",
+                    new DialogInterface.OnClickListener(){
+                        @Override
+                        public void onClick(DialogInterface dialog, int id){
+                        }
+                    }
+                );
+                newCounterBuilder.setNegativeButton("Cancel",
+                        new DialogInterface.OnClickListener(){
+                            public void onClick(DialogInterface dialog, int id){
+                                dialog.cancel();
+                            }
+                        });
+                newCounterBuilder.setCancelable(false);
+
+                newCounterDialog = newCounterBuilder.create();
+                newCounterDialog.show();
+                (newCounterDialog.getButton(DialogInterface.BUTTON_POSITIVE)).setOnClickListener(new View.OnClickListener(){
+                    // Gives Toast warnings on wrong input and nothing happens when clicking ok if error.
+                    @Override
+                    public void onClick(View v) {
+                        boolean done = false;
+                        // Trim strings so names are not made of spaces
+                        String name = counterName.getText().toString().trim();
+                        String num = counterVal.getText().toString().trim();
+
+                        if(!name.equals("")){
+                            // Integer max size is 2^32, that's 2 billion. I limit the app to 1 billion - 1 by checking length
+                            if(!num.equals("") && num.length() < 10){
+                                Counter counter = new Counter(name,
+                                        counterComment.getText().toString(),
+                                        Integer.parseInt(num)
+                                );
+                                counters.add(counter);
+                                counterAdapter.notifyDataSetChanged();
+                                updateAmount();
+                                saveInFile(MainActivity.this);
+                                done = true;
+                            }else {
+                                toastMe("Please enter a value! \n0 to 999,999,999", MainActivity.this);
+                            }
+                        }else{
+                            toastMe("Please enter a name!", MainActivity.this);
+                        }
+                        if(done){
+                            newCounterDialog.dismiss();
+                        }
+                    } // onClick
+                }); // onClickListener for newCounterDialog
+            } // onClick
+        }); // onClickListener for newButton
+    } // onCreate
+
+    /**
+     * Set up adapter and load counters from file.
+     * Loading code is adapted from LonelyTwitter
+     * @see CustomAdapter
+     */
     @Override
     protected void onStart() {
         super.onStart();
         Log.d("CHAOS", "Starting!");
         loadCounters();
-        adapter = new CustomAdapter(this, counters);
-        amount = (TextView) findViewById(R.id.counter_amount);
+        counterAdapter = new CustomAdapter(this, counters);
+        amount_of_comments = (TextView) findViewById(R.id.counter_amount);
         updateAmount();
-        listView.setAdapter(adapter);
-
-
-        // Testing
-//        counters = new ArrayList<>();
-//        adapter.notifyDataSetChanged();
-//        for(int i=0;i<10;i++){
-//            Counter c = new Counter(
-//                    "Counter-"+String.valueOf(i),
-//                    "Comment-"+String.valueOf(i),
-//                    i);
-//            counters.add(c);
-//        }
-//        adapter.notifyDataSetChanged();
-        //Testing End
-
-
+        mainListView.setAdapter(counterAdapter);
     }
-    private void loadCounters(){
 
+    /**
+     * Loads counters from json using Gson
+     * @see Gson
+     */
+    private void loadCounters(){
         try {
             FileInputStream fis = openFileInput(COUNTER_FILENAME);
             BufferedReader in = new BufferedReader(new InputStreamReader(fis));
@@ -107,6 +172,14 @@ public class MainActivity extends AppCompatActivity {
             counters = new ArrayList<>();
         }
     }
+
+    /**
+     * static save function adapted from LonelyTwitter;
+     * takes a context so it can be used in multiple activities
+     * Save file to json with Gson
+     * @see Gson
+     * @param ctx
+     */
     public static void saveInFile(Context ctx){
         try {
             FileOutputStream fos = ctx.openFileOutput(COUNTER_FILENAME,
@@ -120,114 +193,40 @@ public class MainActivity extends AppCompatActivity {
             throw new RuntimeException();
         }
     }
+
+    /**
+     * Updates the summary that counts comments
+     */
     public void updateAmount(){
         int s = counters.size();
         if(s == 0){
-            amount.setText("No Counters");
+            amount_of_comments.setText("No Counters");
         }else if(s == 1){
-            amount.setText("1 Counter");
+            amount_of_comments.setText("1 Counter");
         }else{
-            amount.setText(s+" Counters");
+            amount_of_comments.setText(s+" Counters");
         }
     }
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
 
-        Button button = (Button) findViewById(R.id.new_button);
-        listView = (ListView) findViewById(R.id.main_list);
-
-
-        // TODO
-        // Make so that name and value cannot be empty
-
-
-
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                // TODO
-                // Case for name is empty
-                // Case for value is empty
-                // Fix newline in comment
-                li = LayoutInflater.from(MainActivity.this);
-                prompt = li.inflate(R.layout.alert_custom_new_init, null);
-
-                builder = new AlertDialog.Builder(new ContextThemeWrapper(MainActivity.this, R.style.AlertDialogCustom));
-                builder.setView(prompt);
-
-                final EditText counterName = (EditText) prompt.findViewById(R.id.editName);
-                final EditText counterVal = (EditText) prompt.findViewById(R.id.editVal);
-                counterVal.setRawInputType(Configuration.KEYBOARD_12KEY);
-                final EditText counterComment = (EditText) prompt.findViewById(R.id.editComment);
-
-                builder.setTitle("New Counter");
-
-                builder.setPositiveButton("OK",
-                    new DialogInterface.OnClickListener(){
-                        @Override
-                        public void onClick(DialogInterface dialog, int id){
-                        }
-                    }
-                );
-                builder.setNegativeButton("Cancel",
-                        new DialogInterface.OnClickListener(){
-                            public void onClick(DialogInterface dialog, int id){
-                                dialog.cancel();
-                            }
-                        });
-                builder.setCancelable(false);
-
-                dialog = builder.create();
-                dialog.show();
-                (dialog.getButton(DialogInterface.BUTTON_POSITIVE)).setOnClickListener(new View.OnClickListener(){
-                    @Override
-                    public void onClick(View v) {
-                        boolean done = false;
-                        String name = counterName.getText().toString().trim();
-                        String num = counterVal.getText().toString().trim();
-
-                        if(!name.equals("")){
-                            if(!num.equals("") && num.length() < 10){
-                                Counter counter = new Counter(name,
-                                        counterComment.getText().toString(),
-                                        Integer.parseInt(num)
-                                );
-                                counters.add(counter);
-                                adapter.notifyDataSetChanged();
-                                updateAmount();
-                                saveInFile(MainActivity.this);
-                                done = true;
-                            }else {
-                                toastMe("Please enter a value! \n0 to 999,999,999", MainActivity.this);
-                            }
-                        }else{
-                            toastMe("Please enter a name!", MainActivity.this);
-                        }
-                        if(done){
-                            dialog.dismiss();
-                        }
-                    }
-                });
-
-            }
-
-
-
-
-        });
-
-    }
-
-
+    /**
+     * Update things after returning from other activities
+     * @param requestCode
+     * @param resultCode
+     * @param data
+     */
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        adapter.notifyDataSetChanged();
+        counterAdapter.notifyDataSetChanged();
         updateAmount();
         saveInFile(MainActivity.this);
     }
+
+    /**
+     * static Toast method to make easy Toasts
+     * @param s
+     * @param context
+     */
     public static void toastMe(String s, Context context){
         Toast.makeText(context,s, Toast.LENGTH_SHORT).show();
     }
