@@ -1,0 +1,95 @@
+-- Merging decision tree log ---
+manifest
+ADDED from D:\school\CMPUT 301\Assignment1\CountBook2\app\src\main\AndroidManifest.xml:2:1-24:12
+	package
+		ADDED from D:\school\CMPUT 301\Assignment1\CountBook2\app\src\main\AndroidManifest.xml:3:5-43
+		INJECTED from D:\school\CMPUT 301\Assignment1\CountBook2\app\src\main\AndroidManifest.xml
+		INJECTED from D:\school\CMPUT 301\Assignment1\CountBook2\app\src\main\AndroidManifest.xml
+	android:versionName
+		INJECTED from D:\school\CMPUT 301\Assignment1\CountBook2\app\src\main\AndroidManifest.xml
+		INJECTED from D:\school\CMPUT 301\Assignment1\CountBook2\app\src\main\AndroidManifest.xml
+	xmlns:android
+		ADDED from D:\school\CMPUT 301\Assignment1\CountBook2\app\src\main\AndroidManifest.xml:2:11-69
+	android:versionCode
+		INJECTED from D:\school\CMPUT 301\Assignment1\CountBook2\app\src\main\AndroidManifest.xml
+		INJECTED from D:\school\CMPUT 301\Assignment1\CountBook2\app\src\main\AndroidManifest.xml
+application
+ADDED from D:\school\CMPUT 301\Assignment1\CountBook2\app\src\main\AndroidManifest.xml:5:5-22:19
+MERGED from [com.android.support:appcompat-v7:25.3.1] C:\Users\Sadman\.android\build-cache\7791cc1ed7a29c2c812ace4b0530d4f9c2c1b23e\output\AndroidManifest.xml:29:5-20
+MERGED from [com.android.support:support-v4:25.3.1] C:\Users\Sadman\.android\build-cache\7a2dc6e4d359a258458c4c9c29e46d6c5153c2ea\output\AndroidManifest.xml:29:5-20
+MERGED from [com.android.support:support-fragment:25.3.1] C:\Users\Sadman\.android\build-cache\54557aabfcaf78f9853fcb5f31f3bb2ee85507a1\output\AndroidManifest.xml:29:5-20
+MERGED from [com.android.support:support-media-compat:25.3.1] C:\Users\Sadman\.android\build-cache\db61772948fb937fa34f73c771ced329e408096c\output\AndroidManifest.xml:29:5-20
+MERGED from [com.android.support:support-core-ui:25.3.1] C:\Users\Sadman\.android\build-cache\55c8067ec80fb3135de34687c6e8e24eef46dd5d\output\AndroidManifest.xml:29:5-20
+MERGED from [com.android.support:support-core-utils:25.3.1] C:\Users\Sadman\.android\build-cache\7a7a89788a3240c06ab7a27fbf515202c7cc4ede\output\AndroidManifest.xml:29:5-20
+MERGED from [com.android.support:animated-vector-drawable:25.3.1] C:\Users\Sadman\.android\build-cache\d527fa0808d2be4193f87e699bafb49100eec9c0\output\AndroidManifest.xml:26:5-20
+MERGED from [com.android.support:support-vector-drawable:25.3.1] C:\Users\Sadman\.android\build-cache\7d2df717adf01f0172866c2203b1ce10936a33d3\output\AndroidManifest.xml:26:5-20
+MERGED from [com.android.support:support-compat:25.3.1] C:\Users\Sadman\.android\build-cache\d2ef1279596fba2028385379ead5ebcd65e758c9\output\AndroidManifest.xml:29:5-20
+MERGED from [com.android.support.constraint:constraint-layout:1.0.2] C:\Users\Sadman\.android\build-cache\ad1cc4a6c156d97a59579d601514fa3d0745d8fc\output\AndroidManifest.xml:9:5-20
+	android:label
+		ADDED from D:\school\CMPUT 301\Assignment1\CountBook2\app\src\main\AndroidManifest.xml:8:9-41
+	android:supportsRtl
+		ADDED from D:\school\CMPUT 301\Assignment1\CountBook2\app\src\main\AndroidManifest.xml:10:9-35
+	android:roundIcon
+		ADDED from D:\school\CMPUT 301\Assignment1\CountBook2\app\src\main\AndroidManifest.xml:9:9-54
+	android:allowBackup
+		ADDED from D:\school\CMPUT 301\Assignment1\CountBook2\app\src\main\AndroidManifest.xml:6:9-35
+	android:icon
+		ADDED from D:\school\CMPUT 301\Assignment1\CountBook2\app\src\main\AndroidManifest.xml:7:9-43
+	android:theme
+		ADDED from D:\school\CMPUT 301\Assignment1\CountBook2\app\src\main\AndroidManifest.xml:11:9-39
+activity#com.example.sadman.countbook.MainActivity
+ADDED from D:\school\CMPUT 301\Assignment1\CountBook2\app\src\main\AndroidManifest.xml:12:9-19:20
+	android:label
+		ADDED from D:\school\CMPUT 301\Assignment1\CountBook2\app\src\main\AndroidManifest.xml:13:13-47
+	android:name
+		ADDED from D:\school\CMPUT 301\Assignment1\CountBook2\app\src\main\AndroidManifest.xml:12:19-47
+intent-filter#android.intent.action.MAIN+android.intent.category.LAUNCHER
+ADDED from D:\school\CMPUT 301\Assignment1\CountBook2\app\src\main\AndroidManifest.xml:14:13-18:29
+action#android.intent.action.MAIN
+ADDED from D:\school\CMPUT 301\Assignment1\CountBook2\app\src\main\AndroidManifest.xml:15:17-69
+	android:name
+		ADDED from D:\school\CMPUT 301\Assignment1\CountBook2\app\src\main\AndroidManifest.xml:15:25-66
+category#android.intent.category.LAUNCHER
+ADDED from D:\school\CMPUT 301\Assignment1\CountBook2\app\src\main\AndroidManifest.xml:17:17-77
+	android:name
+		ADDED from D:\school\CMPUT 301\Assignment1\CountBook2\app\src\main\AndroidManifest.xml:17:27-74
+activity#com.example.sadman.countbook.EditCounter
+ADDED from D:\school\CMPUT 301\Assignment1\CountBook2\app\src\main\AndroidManifest.xml:20:9-21:53
+	android:label
+		ADDED from D:\school\CMPUT 301\Assignment1\CountBook2\app\src\main\AndroidManifest.xml:21:13-41
+	android:name
+		ADDED from D:\school\CMPUT 301\Assignment1\CountBook2\app\src\main\AndroidManifest.xml:20:19-46
+uses-sdk
+INJECTED from D:\school\CMPUT 301\Assignment1\CountBook2\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
+MERGED from [com.android.support:appcompat-v7:25.3.1] C:\Users\Sadman\.android\build-cache\7791cc1ed7a29c2c812ace4b0530d4f9c2c1b23e\output\AndroidManifest.xml:21:5-23:78
+MERGED from [com.android.support:support-v4:25.3.1] C:\Users\Sadman\.android\build-cache\7a2dc6e4d359a258458c4c9c29e46d6c5153c2ea\output\AndroidManifest.xml:21:5-23:54
+MERGED from [com.android.support:support-fragment:25.3.1] C:\Users\Sadman\.android\build-cache\54557aabfcaf78f9853fcb5f31f3bb2ee85507a1\output\AndroidManifest.xml:21:5-23:60
+MERGED from [com.android.support:support-media-compat:25.3.1] C:\Users\Sadman\.android\build-cache\db61772948fb937fa34f73c771ced329e408096c\output\AndroidManifest.xml:21:5-23:63
+MERGED from [com.android.support:support-core-ui:25.3.1] C:\Users\Sadman\.android\build-cache\55c8067ec80fb3135de34687c6e8e24eef46dd5d\output\AndroidManifest.xml:21:5-23:58
+MERGED from [com.android.support:support-core-utils:25.3.1] C:\Users\Sadman\.android\build-cache\7a7a89788a3240c06ab7a27fbf515202c7cc4ede\output\AndroidManifest.xml:21:5-23:61
+MERGED from [com.android.support:animated-vector-drawable:25.3.1] C:\Users\Sadman\.android\build-cache\d527fa0808d2be4193f87e699bafb49100eec9c0\output\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-vector-drawable:25.3.1] C:\Users\Sadman\.android\build-cache\7d2df717adf01f0172866c2203b1ce10936a33d3\output\AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:support-compat:25.3.1] C:\Users\Sadman\.android\build-cache\d2ef1279596fba2028385379ead5ebcd65e758c9\output\AndroidManifest.xml:21:5-23:58
+MERGED from [com.android.support.constraint:constraint-layout:1.0.2] C:\Users\Sadman\.android\build-cache\ad1cc4a6c156d97a59579d601514fa3d0745d8fc\output\AndroidManifest.xml:5:5-7:41
+	tools:overrideLibrary
+		ADDED from [com.android.support:appcompat-v7:25.3.1] C:\Users\Sadman\.android\build-cache\7791cc1ed7a29c2c812ace4b0530d4f9c2c1b23e\output\AndroidManifest.xml:23:9-75
+	android:targetSdkVersion
+		INJECTED from D:\school\CMPUT 301\Assignment1\CountBook2\app\src\main\AndroidManifest.xml
+		INJECTED from D:\school\CMPUT 301\Assignment1\CountBook2\app\src\main\AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from D:\school\CMPUT 301\Assignment1\CountBook2\app\src\main\AndroidManifest.xml
+		INJECTED from D:\school\CMPUT 301\Assignment1\CountBook2\app\src\main\AndroidManifest.xml
+meta-data#android.support.VERSION
+ADDED from [com.android.support:appcompat-v7:25.3.1] C:\Users\Sadman\.android\build-cache\7791cc1ed7a29c2c812ace4b0530d4f9c2c1b23e\output\AndroidManifest.xml:25:5-27:34
+MERGED from [com.android.support:support-v4:25.3.1] C:\Users\Sadman\.android\build-cache\7a2dc6e4d359a258458c4c9c29e46d6c5153c2ea\output\AndroidManifest.xml:25:5-27:34
+MERGED from [com.android.support:support-fragment:25.3.1] C:\Users\Sadman\.android\build-cache\54557aabfcaf78f9853fcb5f31f3bb2ee85507a1\output\AndroidManifest.xml:25:5-27:34
+MERGED from [com.android.support:support-media-compat:25.3.1] C:\Users\Sadman\.android\build-cache\db61772948fb937fa34f73c771ced329e408096c\output\AndroidManifest.xml:25:5-27:34
+MERGED from [com.android.support:support-core-ui:25.3.1] C:\Users\Sadman\.android\build-cache\55c8067ec80fb3135de34687c6e8e24eef46dd5d\output\AndroidManifest.xml:25:5-27:34
+MERGED from [com.android.support:support-core-utils:25.3.1] C:\Users\Sadman\.android\build-cache\7a7a89788a3240c06ab7a27fbf515202c7cc4ede\output\AndroidManifest.xml:25:5-27:34
+MERGED from [com.android.support:animated-vector-drawable:25.3.1] C:\Users\Sadman\.android\build-cache\d527fa0808d2be4193f87e699bafb49100eec9c0\output\AndroidManifest.xml:22:5-24:34
+MERGED from [com.android.support:support-vector-drawable:25.3.1] C:\Users\Sadman\.android\build-cache\7d2df717adf01f0172866c2203b1ce10936a33d3\output\AndroidManifest.xml:22:5-24:34
+MERGED from [com.android.support:support-compat:25.3.1] C:\Users\Sadman\.android\build-cache\d2ef1279596fba2028385379ead5ebcd65e758c9\output\AndroidManifest.xml:25:5-27:34
+	android:value
+		ADDED from [com.android.support:appcompat-v7:25.3.1] C:\Users\Sadman\.android\build-cache\7791cc1ed7a29c2c812ace4b0530d4f9c2c1b23e\output\AndroidManifest.xml:27:9-31
+	android:name
+		ADDED from [com.android.support:appcompat-v7:25.3.1] C:\Users\Sadman\.android\build-cache\7791cc1ed7a29c2c812ace4b0530d4f9c2c1b23e\output\AndroidManifest.xml:26:9-47
