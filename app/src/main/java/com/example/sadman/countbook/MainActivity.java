@@ -61,11 +61,11 @@ public class MainActivity extends AppCompatActivity {
      * Creates the main activity;
      * Sets what happens when [NEW] is clicked
      * @see Counter
-     * @param savedInstanceState
+     * @param s
      */
 
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    protected void onCreate(Bundle s) {
+        super.onCreate(s);
         setContentView(R.layout.activity_main);
 
         Button newButton = (Button) findViewById(R.id.new_button);

@@ -38,12 +38,12 @@ public class EditCounter extends AppCompatActivity {
      * Create a new EditCounter activity
      * Sets the values from a counter
      * Sets some buttons with actions
-     * @param savedInstanceState
+     * @param s
      */
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle s) {
 
-        super.onCreate(savedInstanceState);
+        super.onCreate(s);
         setContentView(R.layout.activity_edit_counter);
 
         // Getting position -> counter to add in all values
