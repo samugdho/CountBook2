@@ -11,9 +11,9 @@ import java.util.Date;
 
 /**
  * Counter class to store information on counters;
- * name, comment -> String;
- * initVal, currentVal -> int;
- * creationDate, updateDate -> Date;
+ * name, comment : String;
+ * initVal, currentVal : int;
+ * creationDate, updateDate : Date;
  * Most of these have getters and setters;
  * And some specialized getters for Dates;
  * All setters update updateDate
